@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const index = async(req, res, next) =>{
     try{
-        const { title, page=1, postPerPage=10 } = req.query;
+        const { title, page=1, photoPerPage=10 } = req.query;
         let { published } = req.query 
 
         if (published){
@@ -12,21 +12,21 @@ const index = async(req, res, next) =>{
         }
 
         // Paginazione
-        const offset = (page - 1) * postPerPage;
-        const totalPosts = await prisma.Post.count({ 
+        const offset = (page - 1) * photoPerPage;
+        const totalPhotos = await prisma.Photo.count({ 
             where: {
                 published,
                 title: {
                     contains: title
                 }
             }});
-        const totalPages = Math.ceil(totalPosts / postPerPage);
+        const totalPages = Math.ceil(totalPhotos / photoPerPage);
         if (page > totalPages) {
             throw new Error("La pagina richiesta non esiste.");
         }
 
         // Fine Paginazione
-        const posts = await prisma.Post.findMany({
+        const photos = await prisma.Photo.findMany({
             where:{
                 published,
                 title: {
@@ -34,15 +34,15 @@ const index = async(req, res, next) =>{
                 }
             },
             include: {
-                tags: true
+                categories: true
             },
             orderBy: {
                 id: 'desc'
             },
-            take: parseInt(postPerPage),
+            take: parseInt(photoPerPage),
             skip: offset
         });
-        res.status(200).send({posts: posts, page: page, totalPages: totalPages, totalPosts: totalPosts});
+        res.status(200).send({photos: photos, page: page, totalPages: totalPages, totalPhotos: totalPhotos});
     } catch(e) {
         next(e);
     }
@@ -53,7 +53,26 @@ const create = async(req, res, next) =>{
 }
 
 const show = async(req, res, next) =>{
-
+    try {
+        const searchedID = req.params.id;
+        const photo = await prisma.Photo.findUnique({
+            where: { id: searchedID },
+            include: {
+                categories: {
+                    select: {
+                    title: true
+                    }
+                }
+            }
+        });
+        if (photo) {
+            res.status(200).json(photo);
+        } else {
+            res.status(404).send({ error: "Photo not found" });
+        }
+    } catch (e) {
+        next(e);
+    }
 }
 
 const update = async(req, res, next) =>{
