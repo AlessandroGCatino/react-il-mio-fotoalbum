@@ -79,8 +79,27 @@ const update = async(req, res, next) =>{
 
 }
 
-const destroy = async(req, res, next) =>{
+const destroy = async (req, res, next) => {
+    try {
+        const photoId = parseInt(req.params.id);
+        const photo = await prisma.Photo.findUnique({ where: { id: photoId } });
 
+        if (!photo) {
+            return res.status(404).send({ error: "Photo not found, can't delete" });
+        }
+        const deletedPhoto = await prisma.Photo.delete({ where: { id: photoId } });
+
+        const filePath = path.join(__dirname, 'public', 'post_pics', deletedPhoto.fileName); // Modifica questo percorso
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                return next(err); // Gestisci l'errore della cancellazione del file
+            }
+
+            res.status(200).send({ message: `Photo "${deletedPhoto.id}" eliminata` });
+        });
+    } catch (e) {
+        next(e);
+    }
 }
 
 module.exports = {
