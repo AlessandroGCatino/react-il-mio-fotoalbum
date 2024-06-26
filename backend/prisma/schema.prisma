@@ -27,7 +27,7 @@ model Photo {
 model Category {
   id        Int      @id @default(autoincrement())
   name      String
-  photos   Photo[]
+  photos    Photo[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
