@@ -1,0 +1,90 @@
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html{
+  padding: 1rem;
+}
+
+img{
+  max-width: 100%;
+}
+
+ul > *, ol > *{
+  margin-left: 1rem;
+}
+
+h1, h2{
+  margin: .5em 0;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  .form-element{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+}
+
+// ul li{
+//   display: flex;
+//   gap: .25rem;
+//   align-items: center;
+// }
+
+.multi-checkbox{
+  display: flex;
+  flex-direction: column;
+  label{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+}
+
+header{
+  display: flex;
+  align-items: center;
+  figure{
+    width: 100px;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+.navbar{
+  flex-grow: 1;
+  menu{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style-type: none;
+    align-items: center;
+    a{
+      text-decoration: none;
+      font-weight: bold;
+      color: peru;
+      &.active{
+        opacity: .7;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.error{
+  color: darkred;
+  font-weight: bold;
+}
