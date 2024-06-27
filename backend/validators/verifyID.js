@@ -3,8 +3,7 @@ const verifyID = {
         in: ["params"],
         isInt: {
             errorMessage: "ID deve essere un intero"
-        },
-        toInt: true
+        }
     }
 }
 

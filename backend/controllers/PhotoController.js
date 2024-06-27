@@ -93,15 +93,11 @@ const create = async(req, res, next) =>{
 
 const show = async(req, res, next) =>{
     try {
-        const searchedID = req.params.id;
+        const searchedID = parseInt(req.params.id);
         const photo = await prisma.Photo.findUnique({
             where: { id: searchedID },
             include: {
-                categories: {
-                    select: {
-                    title: true
-                    }
-                }
+                categories: true
             }
         });
         if (photo) {
@@ -117,16 +113,7 @@ const show = async(req, res, next) =>{
 const update = async(req, res, next) =>{
     try{
         const { title, image, description, published } = req.body;
-        const categories = req.body.categories;
-
-        // bonus: verifichiamo se l'utente che sta modificando il photo è l'utente che ha creato il photo
-        
-        const thisPhoto = await prisma.Photo.findUnique({
-            where: {
-                id: req.params.id
-            }
-        });
-        
+        const categories = req.body.categories;        
 
         // definiamo la struttura di data e il collegamento con i categories
         const data = {
@@ -141,7 +128,7 @@ const update = async(req, res, next) =>{
                 })
           }
         const updatedPhoto = await prisma.Photo.update({
-            where: { id: req.params.id },
+            where: { id: parseInt(req.params.id) },
             data: data
         })
         res.status(200).send({
