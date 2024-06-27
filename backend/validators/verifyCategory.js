@@ -1,5 +1,8 @@
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
 const verifyRequest = {
-    title: {
+    name: {
         notEmpty: {
             errorMessage: 'Inserisci il nome della categoria',
             bail: true
@@ -11,6 +14,23 @@ const verifyRequest = {
         },
         isString: {
             errorMessage: 'Il nome deve essere una stringa'
+        },
+        custom: {
+            options: async (value) =>{
+                try {
+                    const existingCat = await prisma.category.findUnique({
+                        where: {
+                            name: value
+                        }
+                    })
+                    if(existingCat){
+                        throw new Error('Categoria già esistente');
+                    }
+                    return true;
+                } catch(e) {
+                    throw e
+                }
+            }
         }
     }
 }

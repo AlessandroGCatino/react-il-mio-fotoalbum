@@ -8,7 +8,7 @@ const multer = require('multer')
 const path = require('path')
 
 const storage = multer.diskStorage({
-    destination: "public/post_pics",
+    destination: "public/photo_pics",
     filename: (req, file, cf) => {
         const fileType = path.extname(file.originalname);
         cf(null, String(Date.now()) + fileType)

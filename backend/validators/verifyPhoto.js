@@ -16,20 +16,6 @@ const verifyRequest = {
             errorMessage: 'Il titolo deve essere una stringa'
         }
     },
-    image: {
-        notEmpty: {
-            errorMessage: "Inserisci l'immagine",
-            bail: true
-        },
-        isLength: {
-            options: { min: 5},
-            errorMessage: "La stringa dell'immagine deve essere lunga almeno 5 caratteri",
-            bail: true
-        },
-        isString: {
-            errorMessage: "L'immagine deve essere una stringa"
-        }
-    },
     description: {
         notEmpty: {
             errorMessage: "Inserisci la descrizione",
@@ -101,8 +87,7 @@ const verifyRequest = {
                     throw e;
                 }
             }
-    
-        }
+        },
     }
 }
 
