@@ -17,8 +17,8 @@ export default function(){
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<DefaultLayout/>}>
-                        <Route path="*" element={<NotFound/>}/>
                         <Route index element={<Home/>} />
+                        <Route path="*" element={<NotFound/>}/>
                         <Route path="login" element={<LoginPage/>} />
                         <Route path="register" element={<RegisterPage/>} />
                         <Route path="contacts" element={<Contacts/>} />
