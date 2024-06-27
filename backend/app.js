@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/auth", routerAuth)
-app.use("/photoes", PhotoRouter)
+app.use("/photos", PhotoRouter)
 app.use("/categories", CategoryRouter)
 
 app.use(missingPage)
