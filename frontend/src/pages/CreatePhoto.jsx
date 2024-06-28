@@ -15,9 +15,9 @@ export default function(){
             }
         });
         console.log(res);
-        if(res.status < 400){
-            navigate(`/photos/${res.data.id}`)
-        }
+        // if(res.status < 400){
+        //     navigate(`/photos/${res.data.id}`)
+        // }
     }
 
     return (

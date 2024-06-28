@@ -67,7 +67,14 @@ header{
 }
 
 .navbar{
+  
   flex-grow: 1;
+  div{
+    margin-block: 15px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
   button{
     border: none;
     background-color: #543564;
@@ -111,8 +118,19 @@ a{
   font-weight: bold;
 }
 
+.goBack{
+  padding: 15px;
+}
+
 .pWrapper{
   padding: 1rem;
+  h4{
+    color: white;
+    display: inline-block;
+    margin-block: 20px;
+    background-color: #543564;
+    padding: 5px 10px;
+  }
   h1{
     text-align: center;
   }
@@ -127,8 +145,21 @@ a{
   display: flex;
   flex-direction: column;
   align-items: center;
-  & div{
-    padding: 15px;
+  & a{
+    & div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      ul{
+        margin-block: 10px;
+        display: flex;
+        gap: 15px
+        li{
+          margin: 0;
+        }
+      }
+    }
   }
   figure{
     width: 100%;

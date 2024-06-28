@@ -8,12 +8,12 @@ const port = PORT || 3000;
 
 const index = async(req, res, next) =>{
     try{
-        const { title, page=1, photoPerPage=5 } = req.query;
+        const { title, page=1, photoPerPage=3 } = req.query;
         let { published } = req.query 
 
-        if (published){
-            published === "true" ? published = true : published = false
-        }
+        // if (published){
+        //     published === "true" ? published = true : published = false
+        // }
 
         // Paginazione
         const offset = (page - 1) * photoPerPage;
@@ -62,7 +62,7 @@ const create = async(req, res, next) =>{
     try{
         const { title, image, description, published} = req.body;
         let {categories} = req.body;
-        console.log(image)
+        console.log(published)
 
         // definiamo la struttura di data e il collegamento con le categories
         categories = categories.map(category => parseInt(category, 10))
@@ -79,7 +79,7 @@ const create = async(req, res, next) =>{
         if(req.file){
             data.image = `${HOST}:${port}/photo_pics/${req.file.filename}`;
         }
-        data.published === "false"? data.published = false : data.published = true
+        // data.published === "false"? data.published = false : data.published = true
 
         const newPhoto = await prisma.Photo.create({data})
         res.status(200).send(newPhoto);

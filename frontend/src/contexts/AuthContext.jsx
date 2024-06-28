@@ -19,7 +19,7 @@ const AuthProvider = ({children}) => {
             setUser(response.data.data);
             console.log(user)
             localStorage.setItem('accessToken', response.token);
-            // navigate('/');
+            navigate('/');
         }catch(err){
             const { errors } = err.response.data;
             const error = new Error(errors ? 'Errore di Login' : err.response.data);

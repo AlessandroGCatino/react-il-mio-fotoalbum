@@ -9,6 +9,9 @@ import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivatePage from "./middlewares/PrivatePage";
 import CreatePhoto from "./pages/CreatePhoto";
+import ShowPhoto from "./pages/ShowPhoto";
+import Dashboard from "./pages/Dashboard";
+import EditPhoto from "./pages/EditPhoto";
 
 
 export default function(){
@@ -24,12 +27,16 @@ export default function(){
                         <Route path="register" element={<RegisterPage/>} />
                         <Route path="contacts" element={<Contacts/>} />
                         <Route path="photos" element={<Photos/>}/>
+                        <Route path="photos/:id" element={<ShowPhoto/>}/>
+                        <Route path="photos/:id/edit" element={<EditPhoto/>}/>
+                        
+                        <Route path="dashboard" element={<Dashboard/>}/>
                     </Route>
 
-                    <Route path="/photos" element={<PrivatePage> <DefaultLayout/> </PrivatePage>}>
+                    <Route path="photos" element={<PrivatePage></PrivatePage>}>
                         <Route path="create" element={<CreatePhoto/>} />
                     </Route>                    
-                    
+
                 </Routes>
             </AuthProvider>
         </BrowserRouter> 

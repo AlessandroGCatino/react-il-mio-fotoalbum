@@ -44,7 +44,9 @@ export default function(){
                     {isLoggedIn &&
                         <li>
                             <div className="t-center">
-                                {user.username && <h3>{user.username}</h3>}
+                                {user.username && <Link to={"/dashboard"}>
+                                    <h3>{user.username}</h3>
+                                </Link>}
                                 <button onClick={logout}>Logout</button>
                             </div>
                         </li>

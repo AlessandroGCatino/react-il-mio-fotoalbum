@@ -26,8 +26,10 @@ export default function(){
 
     return (<>
         <div className="pWrapper">
-            <h1>All Photos</h1>
-            {isLoggedIn && <Link to="create">Crea Nuova Photo</Link>}
+            {isLoggedIn && 
+                <Link to="create">
+                    <div><h4>Crea Nuova Foto</h4></div>
+                </Link>}
             {photos === null ?
                 <div>Loading...</div>
             :<>
