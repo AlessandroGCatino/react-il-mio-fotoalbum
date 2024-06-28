@@ -6,7 +6,7 @@ const { hashPassword, comparePassword } = require("../utils.js");
 const register = async (req, res, next) => {
     try {
         const { email, username, password } = req.body;
-        const data = { 
+        const data = {
             email, 
             username, 
             password: await hashPassword(password),

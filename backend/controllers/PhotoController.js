@@ -62,6 +62,7 @@ const create = async(req, res, next) =>{
     try{
         const { title, image, description, published} = req.body;
         let {categories} = req.body;
+        console.log(image)
 
         // definiamo la struttura di data e il collegamento con le categories
         categories = categories.map(category => parseInt(category, 10))
@@ -114,7 +115,9 @@ const show = async(req, res, next) =>{
 const update = async(req, res, next) =>{
     try{
         const { title, image, description, published } = req.body;
-        const categories = req.body.categories;        
+        const categories = req.body.categories;
+
+        console.log(image)
 
         // definiamo la struttura di data e il collegamento con i categories
         const data = {

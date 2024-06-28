@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivatePage from "./middlewares/PrivatePage";
+import CreatePhoto from "./pages/CreatePhoto";
 
 
 export default function(){
@@ -25,7 +26,8 @@ export default function(){
                         <Route path="photos" element={<Photos/>}/>
                     </Route>
 
-                    <Route path="/" element={<PrivatePage> <DefaultLayout/> </PrivatePage>}>
+                    <Route path="/photos" element={<PrivatePage> <DefaultLayout/> </PrivatePage>}>
+                        <Route path="create" element={<CreatePhoto/>} />
                     </Route>                    
                     
                 </Routes>

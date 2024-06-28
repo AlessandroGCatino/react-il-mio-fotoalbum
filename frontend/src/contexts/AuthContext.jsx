@@ -14,10 +14,12 @@ const AuthProvider = ({children}) => {
 
     const login = async (payload) => {
         try{
-            const { data: response } = await axios.post('/auth/login', payload);
-            setUser(response.data);
+            const response = await axios.post('/auth/login', payload);
+            console.log(response)
+            setUser(response.data.data);
+            console.log(user)
             localStorage.setItem('accessToken', response.token);
-            navigate('/');
+            // navigate('/');
         }catch(err){
             const { errors } = err.response.data;
             const error = new Error(errors ? 'Errore di Login' : err.response.data);
@@ -28,19 +30,14 @@ const AuthProvider = ({children}) => {
 
     const signup = async (payload) => {
         try{
-            if(!payload.name) delete payload.name;
-            if(!payload.profile_pic) delete payload.profile_pic;
-            const { data: response } = await axios.post('/auth/register', payload, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            });
+            if(!payload.username) delete payload.username;
+            const { data: response } = await axios.post('/auth/register', payload);
             setUser(response.data);
             localStorage.setItem('accessToken', response.token);
-            navigate('/');
+            // navigate('/');
         }catch(err){
             const { errors } = err.response.data;
-            const error = new Error(errors ? 'Errore di Signup' : err.response.data);
+            const error = new Error(errors ? 'Errore nella registrazione' : err.response.data);
             error.errors = errors;
             throw error;
         }

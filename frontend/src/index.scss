@@ -68,6 +68,13 @@ header{
 
 .navbar{
   flex-grow: 1;
+  button{
+    border: none;
+    background-color: #543564;
+    color: white;
+    border-radius: 7px;
+    padding: 5px 10px;
+  }
   menu{
     display: flex;
     justify-content: space-between;
@@ -143,6 +150,13 @@ a{
   display: flex;
   justify-content: center;
   gap: 15px;
+  button{
+    border: none;
+    background-color: #543564;
+    color: white;
+    border-radius: 7px;
+    padding: 5px 10px;
+  }
 }
 
 .pContainer{
@@ -162,4 +176,79 @@ a{
 }
 svg{
   font-size: 22px;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  form{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    input{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+  }
+}
+.photoForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  form{
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    div{
+      display: flex;
+    }
+    label{
+      width: 100%;
+      input,
+      textarea{
+        width: 100%;
+
+      }
+    }
+    .checkPubl{
+      display: flex;
+      align-items: center;
+      span{
+        margin-bottom: 1px;
+      }
+    }
+    .inputsForm{
+      align-self: start;
+    }
+    input{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+  }
+  span{
+    display: block;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  }
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
