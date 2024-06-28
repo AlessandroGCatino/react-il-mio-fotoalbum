@@ -25,11 +25,14 @@ export default function(){
             </NavLink>
             <nav className="navbar">
                 <menu>
+                    <div>
                     {urlPages.map( ({label, href}, i) => (
                         <li key={`urlPage${i}`}>
-                            <NavLink to={href}>{label}</NavLink>
+                            <NavLink to={href} end>{label}</NavLink>
                         </li>
                     ))}
+                    </div>
+                    <div>
                     {!isLoggedIn && <>
                         <li>
                             <NavLink to={`/login`}>Login</NavLink>
@@ -46,6 +49,7 @@ export default function(){
                             </div>
                         </li>
                     }
+                    </div>
                 </menu>
             </nav>
         </header>

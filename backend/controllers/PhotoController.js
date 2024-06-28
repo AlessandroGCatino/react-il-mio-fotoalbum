@@ -2,17 +2,19 @@ const {PrismaClient} = require('@prisma/client');
 const e = require('express')
 const {deletePic} = require("../utils")
 const prisma = new PrismaClient();
+require("dotenv").config();
+const {PORT, HOST} = process.env;
+const port = PORT || 3000;
 
 const index = async(req, res, next) =>{
     try{
-        const { title, page=1, photoPerPage=10 } = req.query;
+        const { title, page=1, photoPerPage=5 } = req.query;
         let { published } = req.query 
 
         if (published){
             published === "true" ? published = true : published = false
         }
 
-        console.log(title)
         // Paginazione
         const offset = (page - 1) * photoPerPage;
         const totalPhotos = await prisma.Photo.count({ 
@@ -52,7 +54,6 @@ const index = async(req, res, next) =>{
             res.status(200).send({error: "No post found"})
         }
     } catch(e) {
-        console.log(e);
         next(e);
     }
 }
@@ -75,7 +76,7 @@ const create = async(req, res, next) =>{
         }
 
         if(req.file){
-            data.image = `photo_pics/${req.file.filename}`;
+            data.image = `${HOST}:${port}/photo_pics/${req.file.filename}`;
         }
         data.published === "false"? data.published = false : data.published = true
 
@@ -127,6 +128,12 @@ const update = async(req, res, next) =>{
                     }
                 })
           }
+        if(req.file){
+            data.image = `${HOST}:${port}/photo_pics/${req.file.filename}`;
+        }
+
+        data.published === "false"? data.published = false : data.published = true
+
         const updatedPhoto = await prisma.Photo.update({
             where: { id: parseInt(req.params.id) },
             data: data

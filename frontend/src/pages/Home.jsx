@@ -5,7 +5,7 @@ export default function(){
     const { user, isLoggedIn } = useAuth();
 
     return (<>
-        <div>
+        <div className="t-center">
             {isLoggedIn ? 
                 <h1>Benvenuto {user.name || user.email}!</h1>
             :
