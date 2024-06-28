@@ -8,6 +8,7 @@ export default function({initialData, onSubmit}){
 
     const getCategories = async () => {
         const categoriesData = await axios.get(`/categories`);
+        console.log(categoriesData);
         setCategories(categoriesData.data);
     }
 

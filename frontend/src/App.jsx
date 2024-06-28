@@ -28,9 +28,9 @@ export default function(){
                         <Route path="contacts" element={<Contacts/>} />
                         <Route path="photos" element={<Photos/>}/>
                         <Route path="photos/:id" element={<ShowPhoto/>}/>
-                        <Route path="photos/:id/edit" element={<EditPhoto/>}/>
-                        
                         <Route path="dashboard" element={<Dashboard/>}/>
+                        <Route path="photos/:id/edit" element={<EditPhoto/>}/>
+
                     </Route>
 
                     <Route path="photos" element={<PrivatePage></PrivatePage>}>

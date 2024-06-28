@@ -4,7 +4,7 @@ import FormCreateEdit from "../components/FormCreateEdit";
 
 export default function(){
     
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const createPhoto = async formData => {
         console.log(formData);
@@ -15,9 +15,9 @@ export default function(){
             }
         });
         console.log(res);
-        // if(res.status < 400){
-        //     navigate(`/photos/${res.data.id}`)
-        // }
+    //     if(res.status < 400){
+    //         navigate(`/photos/${res.data.id}`)
+    //     }
     }
 
     return (

@@ -19,7 +19,7 @@ export default function(){
             description: photos.description,
             image: '',
             published: photos.published,
-            categories: photos.categories.map(i => i.id)
+            categories: photos.categories.map(cat => cat.id)
         });
     }
 
