@@ -9,30 +9,45 @@ export default function(){
 
     const [searchParams, setSearchParams] = useSearchParams({page: 1});
 
+    const [searchBarValue, setSearchBarValue] = useState("");
+
+
     let [totalPages, setTotalPages] = useState(null);
 
     const currPage = parseInt(searchParams.get('page'));
 
     useEffect(() => {
-        axios.get(`/photos?page=${currPage}&limit=10`)
+        axios.get(`/photos?page=${currPage}&limit=10&title=${searchBarValue}`)
             .then((res) => {
-                setPhotos(res.data.photos)
-                setTotalPages(res.data.totalPages)
+                if(res.data.photos == "No photos found"){
+                    setPhotos("None")
+                    setTotalPages(null)
+                } else {
+                    setPhotos(res.data.photos)
+                    console.log(res.data)
+                    setTotalPages(res.data.totalPages)
+                }
                 }
         )
-    },[searchParams]);
+    },[searchParams, searchBarValue]);
 
     const { isLoggedIn } = useAuth();
 
     return (<>
         <div className="pWrapper">
+            <div>
             {isLoggedIn && 
                 <Link to="create">
-                    <div><h4>Crea Nuova Foto</h4></div>
+                    <h4>Crea Nuova Foto</h4>
                 </Link>}
-            {photos === null ?
+                <input type="text" className="searchBar" placeholder="Search a photo..." value={searchBarValue} onChange={(e) => setSearchBarValue(e.target.value)}/>
+            </div>
+            {photos == "None" && <h2>No Photos found</h2>}
+            {photos === null &&
                 <div>Loading...</div>
-            :<>
+            }
+            {photos !== "None" && photos !== null && 
+            <>
             <div className="pContainer">
                 {photos.map(p => (
                     <PhotoCard
@@ -47,7 +62,7 @@ export default function(){
                 ))}
             </div>
                 
-            </>}
+            
             <div className="paginator">
                 <button 
                     style={{visibility: currPage - 1 > 0 ? 'visible' : 'hidden'}} 
@@ -59,6 +74,7 @@ export default function(){
                     onClick={()=>setSearchParams({page: currPage + 1})
                 }>+</button>
             </div>
+            </>}
         </div>
     </>)
 }

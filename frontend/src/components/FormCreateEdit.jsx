@@ -42,7 +42,7 @@ export default function({initialData, onSubmit}){
 
     return (
         <div className="photoForm">
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 {Object.keys(defaultData).map((name, index) => {
                     const value = defaultData[name];
                     if(Array.isArray(value)){
@@ -99,7 +99,7 @@ export default function({initialData, onSubmit}){
                             }
                             if(name === 'description'){
                                 return (
-                                    <label className="inputsForm">
+                                    <label key={`formElement${index}`} className="inputsForm">
                                         <span>{name}:</span>
                                         <textarea
                                             key={`formElement${index}`} 

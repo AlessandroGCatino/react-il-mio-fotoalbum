@@ -51,7 +51,7 @@ const index = async(req, res, next) =>{
             });
             res.status(200).send({photos: photos, page: page, totalPages: totalPages, totalPhotos: totalPhotos});
         } else {
-            res.status(200).send({error: "No post found"})
+            res.status(200).send({photos: "No photos found"})
         }
     } catch(e) {
         next(e);
