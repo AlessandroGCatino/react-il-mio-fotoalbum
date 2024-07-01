@@ -137,6 +137,18 @@ a{
 }
 
 .pCard{
+  ul{
+    margin-block: 10px;
+    display: flex;
+    gap: 15px;
+    li{
+      margin: 0;
+      border: 1px dashed black
+    }
+  }
+}
+
+.pCard{
   overflow: hidden;
   border: 1px solid black;
   width: 500px;
@@ -151,14 +163,7 @@ a{
       flex-direction: column;
       align-items: center;
       padding: 15px;
-      ul{
-        margin-block: 10px;
-        display: flex;
-        gap: 15px
-        li{
-          margin: 0;
-        }
-      }
+      
     }
   }
   figure{

@@ -62,7 +62,6 @@ export default function(){
                             published={p.available}
                             onDelete={deletePhoto}
                         />
-                        {user.isAdmin && <Link to={`/photos/${id}/edit`}>Modifica</Link>}
                     </>
                 }
             </>} 

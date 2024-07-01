@@ -22,7 +22,7 @@ export default function(){
 
     return (
         <div>
-            <Link to="../" relative="path">Indietro</Link>
+            <Link to="../" relative="path"><div className="pWrapper"><h4>Indietro</h4></div></Link>
             <FormCreateEdit
                 onSubmit={createPhoto}
             />
