@@ -33,7 +33,7 @@ export default function(){
 
                     </Route>
 
-                    <Route path="photos" element={<PrivatePage></PrivatePage>}>
+                    <Route path="photos" element={<PrivatePage><DefaultLayout/></PrivatePage>}>
                         <Route path="create" element={<CreatePhoto/>} />
                     </Route>                    
 
